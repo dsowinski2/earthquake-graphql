@@ -50,6 +50,11 @@ type EventListing {
 type OperationResult {
     success: Boolean!
 }
+type EventUpdateType {
+  type: String
+  properties: EventProperties
+  geometry: EventGeometry
+}
 
 type Query {
   events(date: String, country: String, state: String, skip: Float, limit: Float): EventListing!
@@ -57,7 +62,7 @@ type Query {
 }
 
 type Mutation {
-    updateEvent(id: String): OperationResult!
+    updateEvent(id: String, data: EventUpdateType): OperationResult!
 }
 ```
 # Possible things to do:
@@ -65,9 +70,10 @@ type Mutation {
 2. Handle errors with error's codes.
 3. Clean data, as probably some of properties are not relevant.
 4. Add proper graphql api endpoint (currently only playground is enabled).
-5. Add logger.
+5. Add logger for errors.
 6. Probably it would be good to move data loading logic to some cloud functions(e.g. AWS Lambda) and schedule loading time.
 7. As events data has updated property, we shoud be able to handle updating stored data, for past dates.
+
 
 
 # Running project:
