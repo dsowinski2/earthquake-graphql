@@ -16,6 +16,8 @@ services:
     command: /bin/sh -c 'npm run start'
     ports:
       - "5001:3000"
+    depends_on:
+      - mongodb
 
     stdin_open: true
     tty: true
